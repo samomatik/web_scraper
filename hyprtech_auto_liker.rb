@@ -2,7 +2,7 @@ require 'watir' # Crawler
 require 'pry' # Ruby REPL
 require 'rb-readline' # Ruby IRB
 require 'awesome_print' # Console output
-require_relative 'credentials' # Pulls in login credentials from credentials.rb
+require_relative 'hyprtech_credentials' # Pulls in login credentials from credentials.rb
 
 username = $username
 password = $password
@@ -31,7 +31,7 @@ sleep(2)
 loop do
 #   Scroll to bottom of window 3 times to load more results (20 per page)
 #  3.times do |i|
-#    browser.driver.execute_script("window.scrollBy(0,document.body.scrollHeight)")
+    browser.driver.execute_script("window.scrollBy(0,document.body.scrollHeight)")
 #    sleep(1)
 #  end
 
@@ -49,8 +49,7 @@ loop do
   end
   num_of_rounds += 1
   puts "--------- #{like_counter / num_of_rounds} likes per round (on average) ----------"
-#  browser.refresh
-  browser.driver.execute_script("window.scrollBy(0,document.body.scrollHeight)")
+  browser.refresh
   break if like_counter >= MAX_LIKES
   sleep(10) # Return to top of loop after this many seconds to check for new photos
 end

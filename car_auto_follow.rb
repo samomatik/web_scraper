@@ -2,11 +2,11 @@ require 'watir' # Crawler
 require 'pry' # Ruby REPL
 require 'rb-readline' # Ruby IRB
 require 'awesome_print' # Console output
-require_relative 'credentials' # Pulls in login credentials from credentials.rb
+require_relative 'hyprtech_credentials' # Pulls in login credentials from credentials.rb
 
 username = $username
 password = $password
-users = ['bmw', 'bmwau', 'bmwm', 'bmwi', 'bmwusa', 'bmwmotorsport', 'bmwclassic', 'thebmwclub', 'thedirtythirty', 'bmwmotorrad', 'e30_lovers', 'mpower_officiall', 'f87_m2', 'notraction', 'stancenation', 'stanceworks', 'libertywalkaustralia', 'lorbekluxurycars', 'e60_club', 'e60fans', 'silverf10', 'jpricem5', 'otium_club', 'downshiftaus', 'melbourneexoticcarspotting', 'evolvetechnikau', 'bullrushrally', 'engineeredtoslide', 'likewisegarage', 'wearelikewise', 'mpireboyz_', 'thespeedhunters', 'shmee150', 'bmw_m5_hf_ps507', 'laguna_seca_m5', 'vader_m4', 'mpower.fanpage', 'bmw_girls', 'm3nahrich']
+users = ['bmw', 'bmwau', 'bmwm', 'bmwi', 'bmwusa', 'bmwmotorsport', 'bmwclassic', 'thebmwclub', 'thedirtythirty', 'bmwmotorrad', 'e30_lovers', 'mpower_officiall', 'f87_m2', 'notraction', 'stancenation', 'stanceworks', 'libertywalkaustralia', 'lorbekluxurycars', 'e60_club', 'e60fans', 'jpricem5', 'otium_club', 'downshiftaus', 'melbourneexoticcarspotting', 'evolvetechnikau', 'bullrushrally', 'engineeredtoslide', 'likewisegarage', 'wearelikewise', 'mpireboyz_', 'thespeedhunters', 'shmee150', 'bmw_m5_hf_ps507', 'laguna_seca_m5', 'vader_m4', 'mpower.fanpage', 'bmw_girls', 'stillnahrich']
 follow_counter = 0
 unfollow_counter = 0
 MAX_UNFOLLOWS = 200
@@ -42,7 +42,7 @@ loop do
       #ap "Unfollowing #{val}"
       #browser.button(:class => ['_qv64e', '_t78yp', '_r9b8f', '_njrw0']).click
       #unfollow_counter += 1
-      ap "Already following page"
+      ap "Already following #{val}"
     end
     sleep(1.0/2.0) # Sleep half a second to not get tripped up when un/following many users at once
   }
