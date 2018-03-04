@@ -6,7 +6,7 @@ require_relative 'hyprtech_credentials' # Pulls in login credentials from creden
 
 username = $username
 password = $password
-users = ['bmw', 'bmwau', 'bmwm', 'bmwi', 'bmwusa', 'bmwmotorsport', 'bmwclassic', 'thebmwclub', 'thedirtythirty', 'bmwmotorrad', 'e30_lovers', 'mpower_officiall', 'f87_m2', 'notraction', 'stancenation', 'stanceworks', 'libertywalkaustralia', 'lorbekluxurycars', 'e60_club', 'e60fans', 'jpricem5', 'otium_club', 'downshiftaus', 'melbourneexoticcarspotting', 'evolvetechnikau', 'bullrushrally', 'engineeredtoslide', 'likewisegarage', 'wearelikewise', 'mpireboyz_', 'thespeedhunters', 'shmee150', 'bmw_m5_hf_ps507', 'laguna_seca_m5', 'vader_m4', 'mpower.fanpage', 'bmw_girls', 'stillnahrich']
+users = ['bmw', 'bmwau', 'bmwm', 'bmwi', 'bmwusa', 'bmwmotorsport', 'bmwclassic', 'thebmwclub', 'thedirtythirty', 'bmwmotorrad', 'e30_lovers', 'mpower_officiall', 'f87_m2', 'notraction', 'stancenation', 'stanceworks', 'libertywalkaustralia', 'lorbekluxurycars', 'e60_club', 'e60fans', 'jpricem5', 'otium_club', 'downshiftaus', 'melbourneexoticcarspotting', 'evolvetechnikau', 'bullrushrally', 'engineeredtoslide', 'likewisegarage', 'wearelikewise', 'mpireboyz_', 'thespeedhunters', 'shmee150', 'bmw_m5_hf_ps507', 'laguna_seca_m5', 'mpower.fanpage', 'bmw_girls', 'stillnahrich']
 follow_counter = 0
 unfollow_counter = 0
 MAX_UNFOLLOWS = 200
@@ -27,7 +27,7 @@ sleep(2)
 puts "We're in #hackerman"
 
 # Continuous loop to run until you've unfollowed the max people for the day
-loop do
+#loop do
   users.each { |val|
     # Navigate to user's page
     browser.goto "instagram.com/#{val}/"
@@ -39,20 +39,19 @@ loop do
       browser.button(:class => ['_qv64e', '_gexxb', '_r9b8f', '_njrw0']).click
       follow_counter += 1
     elsif browser.button(:class => ['_qv64e', '_t78yp', '_r9b8f', '_njrw0']).exists?
-      #ap "Unfollowing #{val}"
-      #browser.button(:class => ['_qv64e', '_t78yp', '_r9b8f', '_njrw0']).click
-      #unfollow_counter += 1
-      ap "Already following #{val}"
+      ap "Unfollowing #{val}"
+      browser.button(:class => ['_qv64e', '_t78yp', '_r9b8f', '_njrw0']).click
+      unfollow_counter += 1
     end
     sleep(1.0/2.0) # Sleep half a second to not get tripped up when un/following many users at once
   }
   puts "--------- #{Time.now} : #{unfollow_counter} ----------"
-  break if unfollow_counter >= MAX_UNFOLLOWS
-  sleep(3600) # Sleep 1 hour (3600 seconds)
-end
+#  break if unfollow_counter >= MAX_UNFOLLOWS
+#  sleep(3600) # Sleep 1 hour (3600 seconds)
+#end
 
 ap "Followed #{follow_counter} users and unfollowed #{unfollow_counter} in #{((Time.now - start_time)/60).round(2)} minutes"
 
 # Leave this in to use the REPL at end of program
 # Otherwise, take it out and program will just end
-Pry.start(binding)
+# Pry.start(binding)

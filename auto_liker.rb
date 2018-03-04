@@ -30,15 +30,15 @@ sleep(2)
 # Continuous loop to break upon reaching the max likes
 loop do
 #   Scroll to bottom of window 3 times to load more results (20 per page)
-#  3.times do |i|
-#    browser.driver.execute_script("window.scrollBy(0,document.body.scrollHeight)")
-#    sleep(1)
-#  end
-
+  3.times do |i|
+    browser.driver.execute_script("window.scrollBy(0,document.body.scrollHeight)")
+    sleep(1)
+  end
+  browser.driver.execute_script("window.scrollTo(0,0)")
   # Call all unliked like buttons on page and click each one.
 
   if browser.span(:class => "coreSpriteHeartOpen").exists?
-    browser.spans(:class => "coreSpriteHeartOpen").each { |val|
+    browser.span(:class => "coreSpriteHeartOpen").each { |val|
       val.click
       likes_last_round += 1
       like_counter += 1
@@ -49,8 +49,8 @@ loop do
   end
   num_of_rounds += 1
   puts "--------- #{like_counter / num_of_rounds} likes per round (on average) ----------"
-#  browser.refresh
-  browser.driver.execute_script("window.scrollBy(0,document.body.scrollHeight)")
+  browser.refresh
+#  browser.driver.execute_script("window.scrollBy(0,document.body.scrollHeight)")
   break if like_counter >= MAX_LIKES
   sleep(10) # Return to top of loop after this many seconds to check for new photos
 end
